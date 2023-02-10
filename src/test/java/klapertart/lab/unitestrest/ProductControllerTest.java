@@ -70,4 +70,12 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value("5500"));
     }
 
+    @Test
+    void testSetProduct() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/product/{name}/price/{price}","Rinso",1300L))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Rinso"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").value("1300"));
+    }
 }

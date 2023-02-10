@@ -1,9 +1,8 @@
 package klapertart.lab.unitestrest.controller;
 
 import klapertart.lab.unitestrest.data.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -39,4 +38,21 @@ public class ProductController {
 
         return product;
     }
+
+    @GetMapping("/product/{name}/price/{price}")
+    public Product setProduct(@PathVariable String name, @PathVariable long price){
+        Product product = Product.builder()
+                .id(UUID.randomUUID().toString())
+                .name(name)
+                .price(price)
+                .build();
+
+        return product;
+    }
+
+    /*
+    @PostMapping("/product")
+    public Product saveProduct(@RequestBody Product product){
+    }
+     */
 }
